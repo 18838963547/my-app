@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title {
+            color: rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+    <div id="like_button_container"></div>
+    
+
+    <!-- <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script> -->
+    <script type="text/javascript" src="./react/react.development.js"></script>
+    <script type="text/javascript" src="./react/react-dom.development.js"></script>
+    <script type="text/javascript" crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- <script src="./like_button.js"></script> -->
+    <script type="text/babel">
+        const el = document.getElementById('like_button_container')
+        const root = ReactDOM.createRoot(el)
+        // 1. 表达式的使用
+        // const arr = [{name:'angluer',id:1},{name:'react',id:1},{name:'vue',id:1}]
+        // const vdom = (
+        //     <div>
+        //         {
+        //         arr.map(it=>{
+        //            return <p>{it.name}</p>
+        //         })
+        //     }
+        //     </div>            
+        // )
+
+        // 2. 函数式组件
+        // function Demo(){
+        //     console.log(this); // this指向的undefined，因为Babel在编译的时候使用了严格模式，严格模式下的自定义函数中的this不指向window。
+        //     return <h2>我是用函数定义的组建.使用组建渲染</h2> 
+        // }
+        // ReactDOM.createRoot(el).render(<Demo />)
+
+        // 3. 类式组件
+        // class MyComponent extends React.Component { 
+        //     render(){ // 这个render既然是MyComponent类里面的方法，那么，在创建后，render就挂在类的原型对象上，供实例使用
+        //         return ( // render里面的this是这个类创建出来的实例对象
+        //             <div>类式组件</div>
+        //         )
+        //     }
+        // }
+        // // 类式组件： react在解析的过程中发现组件是类定义的，首先使用new，创建该类的实例，然后通过实例调用原型上的render函数，创建虚拟DOM，然后将虚拟DOM转化为真实的DOM
+        // ReactDOM.createRoot(el).render(<MyComponent />)
+
+        // 4. 复杂组件（有状态state）  组件三大属性之一—————state
+        // class MyComponent extends React.Component {
+        //     // 构造器调用了几次？ ————1次
+        //     constructor(props){
+        //         super(props)
+        //         this.state = {isHot:38,wind:'18级'}  // 要求是个对象
+        //         this.changeVal = this.changeVal.bind(this) // 直接通过改变this的指向来完成下面出现的调用问题（review.js-3中的问题）
+        //     }
+        //     // render调用了  1+n次。初始化一次，n是状态更新的次数
+        //     render(){
+        //         const {isHot,wind} = this.state
+        //         return <div>炎热的一天，温度是{isHot},大风竟然还有{wind} --- <button onClick={this.changeVal}>按钮</button></div>
+        //     }
+        //     changeVal(){
+        //         // console.log(this); // 这里涉及的问题要看下review.js中的问题3
+        //         // console.log(this.state.isHot++) // 数据已经改变.。但是在react中，状态必须通过setState()来修改
+        //         this.setState(state=>({
+        //             isHot: state.isHot+1
+        //         }))
+        //     }
+        // }
+        // function demo(){
+        //     console.log('warning');
+        // }
+        // ReactDOM.createRoot(el).render(<MyComponent />)
+
+        // 5. 复杂组件的简写（工作中常用）
+        // class MyComponent extends React.Component {
+        //     state = {isHot:38,wind:'18级'}
+        //     render(){
+        //         const {isHot,wind} = this.state
+        //         return <div>炎热的一天，温度是{isHot},大风竟然还有{wind} --- <button onClick={this.changeVal}>按钮</button></div>
+        //     }
+        //     // 直接采用赋值的方式，将函数赋值给了实例对象，然后直接调用函数的时候，this丢失。
+        //     // 采用箭头函数，箭头函数在调用的时候，寻找外层的this，changVal的外层是组件的实例对象，所以可以调用
+        //     changeVal = ()=>{
+        //         console.log(this) // 这里的this指向的是实例对象。
+        //     }
+        // }
+        // ReactDOM.createRoot(el).render(<MyComponent />)
+
+        // 6. 类组件的实例三大属性之一————props
+        // class MyComponent extends React.Component {
+        //     constructor(props){ // 构造器是否接收props，是否传递给super，取决于：是否希望在构造器中通过this访问props。（真实开发中多数情况下没啥用。）
+        //         super(props)
+        //         console.log(this.props);
+        //     }
+        //     render(){
+        //         const {name,age,price} = this.props // props是只读的，不可修改
+        //         return (
+        //             <div>
+        //                 <div>{name}</div>
+        //                 <div>{age}</div>
+        //                 <div>{price}</div>
+        //             </div>
+        //         )
+        //     }
+        //     static propTypes = {}
+        //     static defaultProps = {}
+        // }
+        // // 对属性类型进行限制
+        // // MyComponent.propTypes = {
+        // //     // name: React.PropTypes.string // 现版本被弃用了。15版本及之前的属性
+        // // }
+        // // 设置默认值
+        // // MyComponent.defaultProps = {
+        // //     name: 'zhangsna'
+        // // }
+        // const p = {name:'zhangsan',age:'19',price: 34}
+        // ReactDOM.createRoot(el).render(<MyComponent {...p} />)
+
+        // 7. 类组件的实例三大属性之一————refs
+        // 回调ref中被调用的次数的问题？ 内联函数的话会执行两次，原因见官方文档的回调refs说明
+        // class MyComponent extends React.Component {
+        //     myRef = React.CreatRef() // 调用后可以返回一个容器，该容器可以存储被ref所标识的节点。该容器是专人专用的。只能绑定一个
+        //     myRef2 = React.CreatRef() 
+        //     render(){
+        //         return (
+        //             <div>
+        //                 {/*<input type="text" ref='input1'/>*/} 
+        //                 <br />
+        //                 <button ref={this.myRef} onClick={this.showData}>btn</button>
+        //                 <br />
+        //                 <input type="text" onBlur={this.showData2} ref={this.myRef2}/>
+        //             </div>
+        //         )
+        //     }
+        //     showData = ()=>{
+        //         console.log(this.refs.input1.value);
+        //         // this.setState(state=>{
+        //         //     input1: state.input1
+        //         // })
+        //     }
+        //     showData2 = ()=>{
+        //         const {input2} = this
+        //         console.log(input2.value)
+        //     }
+        // }
+        // ReactDOM.createRoot(el).render(<MyComponent />)
+
+        // 8. 事件处理
+        // class MyComponent extends React.Component {
+        //     /* 
+        //         1。使用React规定的onXXX相关事件绑定对元素绑定事件
+        //             a. React使用的是自定义（合成）事件，而不是使用的原声DOM事件 ————为了更好的兼容性
+        //             b. React中的事件是通过事件委托方式处理的，（委托给组件的最外层元素） ———— 为了高效
+        //         2. 通过event.target得到发生事件的DOM元素对象 ———— 不要过度使用ref
+        //     */
+        //     render(){
+        //         return <div>shijianchuli</div>
+        //     }
+        // }
+        // ReactDOM.createRoot(el).render(<MyComponent />)
+
+        // 9. 非受控组件(用的时候才去取值。相当于不双向绑定吧)
+        // class MyComponent extends React.Component {
+        //     submitForm = (event)=>{
+        //         event.preventDefault()
+        //         const {username,password} = this
+        //         console.log(username.value,password.value)
+        //     }
+        //     render(){
+        //         return (
+        //             <form action="http://www.atguigu.com" onSubmit={this.submitForm}>
+        //                 account: <input ref={val=>this.username = val} type="text" name='username'/>
+        //                 <br/>
+        //                 password: <input type="password"  ref={val=>this.password=val} name='password'/>
+        //                 <button>login</button>
+        //             </form>
+        //         )
+        //     }
+        // }
+        // ReactDOM.createRoot(el).render(<MyComponent />)
+
+        // 10. 受控组件   另拓展：高阶函数-柯里化
+        // class MyComponent extends React.Component {
+        //     state = {
+        //         username:'',
+        //         password:''
+        //     }
+        //     saveUsername = (type)=>{
+        //         // console.log(type,'type')
+        //         return (event)=>{
+        //             // console.log(type,event.target.value);
+        //             this.setState({
+        //                 [type]: event.target.value
+        //             })
+        //         }
+        //     }
+        //     submitForm = ()=>{
+        //         event.preventDefault()
+        //         console.log(this.state);   
+        //     }
+        //     render(){
+        //         return (
+        //             <form onSubmit={this.submitForm}>
+        //                 account: <input onChange={this.saveUsername('username')} type="text" name='username'/>
+        //                 {/*<input onChange={(event)=>this.saveUsername('username',event)} type="text" name='username'/>*/}
+        //                 <br/>
+        //                 password: <input onChange={this.saveUsername('password')} type="password"  name='password'/>
+        //                 <button>login</button>
+        //             </form>
+        //         )
+        //     }
+        // }
+        // ReactDOM.createRoot(el).render(<MyComponent />)
+
+        // 11. 生命周期 --初了解
+        // class LifeCycle extends React.Component {
+        //     state = {
+        //         opacity:1,
+        //         timer: null
+        //     }
+        //     go = ()=>{
+        //         console.log('goggogo')
+        //     }
+        //     uninstallCom = ()=>{
+        //         // ReactDOM.unmountComponentAtNode(el) 老版本的
+        //         root.unmount(el)
+        //     }
+        //     action = ()=>{
+        //         this.timer = setInterval(()=>{
+        //             let {opacity} = this.state
+        //             opacity++
+        //             this.setState({opacity})
+        //         },1000)
+        //     }
+        //     render(){ // 调用时机，初始化渲染和状态更新之后会调用。
+        //         const {opacity} = this.state
+        //         return (
+        //             <div>
+        //                 <div>学习react_{opacity}天</div>
+        //                 <button onClick={this.go}>奋斗</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        //                 <button onClick={this.uninstallCom}>放弃</button>
+        //             </div>
+        //         )
+        //     }
+        //     // 生命周期---组件挂载完成后执行的函数
+        //     componentDidMount(){
+        //         this.action()
+        //     }
+        //     // 生命周期---组件将要卸载的时候执行的生命周期
+        //     componentWillUnmount(){
+        //         clearInterval(this.timer)
+        //     }
+        // }
+        // root.render(<LifeCycle />)
+
+        // 12. 生命周期（旧版本）
+        // class LifeCycle extends React.Component {
+        //     // 1. （挂载时）首先进行构造器的挂载。
+        //     constructor(props){
+        //         super(props)
+        //         console.log('生命周期-constructor');
+        //         this.state = {
+        //             count:0
+        //         }
+        //     }
+        //     // 2. （挂载时）组件将要挂载(旧的，新的重命名了)
+        //     componentWillMount(){ 
+        //         console.log('生命周期-componentWillMount');
+        //     }
+        //     //  如果父组件render更新，将会调用一个生命周期，执行生命周期
+        //     //  a前面执行。（不过第一次执行调用的不算。不会执行。后面更新的才会执行）
+        //     componentWillReceiveProps(){ 
+        //         console.log('生命周期--componentWillReceiveProps')
+        //     }
+        //      // a. （组件更新时） 控制组件更新的阀门  -- 调用setState()函数的时候
+        //      shouldComponentUpdate(){
+        //         console.log('生命周期--shouldComponentUpdate')
+        //         // setState更新的时候调用，如果写了，就执行这里面的代码，必须要有返回boolean值。如果不写，默认返回true
+        //         // 如果返回的false，则流程停止，不在执行后面的生命周期钩子
+        //         return true
+        //     }
+        //     // b. 组件将要更新的时候 -- 调用forceUpdate()函数的时候
+        //     componentWillUpdate(){
+        //         console.log('生命周期--componentWillUpdate')
+        //     }
+        //     // 3/c. 组件挂载渲染
+        //     render(){ // 调用时机，初始化渲染和状态更新之后会调用。
+        //         console.log('生命周期-render');
+        //         return (
+        //             <div>
+        //                 <div>学习react_{this.state.count}天</div>
+        //                 <button onClick={this.add}>冲</button>
+        //             </div>
+        //         )
+        //     }
+        //     // 4. （挂载时）组件挂载完毕
+        //     componentDidMount(){
+        //         console.log('生命周期-componentDidMount');
+        //     }
+        //     // d. (更新完毕时)
+        //     componentDidUpdate(){
+        //         console.log('生命周期-componentDidUpdate');
+                
+        //     }
+        //     // 5/e. （挂载时和父组件render的时候）组件将要卸载
+        //     componentWillUnmount(){
+        //         console.log('生命周期-componentWillUnmount');
+        //     }
+        //     add = ()=>{
+        //         let {count} = this.state
+        //         count++
+        //         this.setState({count})
+        //     }
+            
+        // }
+        // root.render(<LifeCycle />)
+
+        // 13. 生命周期（新版本）
+        class LifeCycle extends React.Component {
+            // 1. （挂载时）首先进行构造器的挂载。
+            constructor(props){
+                super(props)
+                console.log('生命周期-constructor');
+                this.state = {
+                    count:0
+                }
+            }
+            // 2. getDerivedStateFromProps 从Props中得到派生的状态
+            //  这个状态是挂载和更新的时候都调用的钩子函数
+            // 使用场景极少，除非是state的值任何时候都取决于props的时候，才使用这个。
+            static getDerivedStateFromProps(props){
+                // console.log('生命周期--getDerivedStateFromProps')
+                // console.log(props); 
+                return null
+            }
+             // a. （组件更新时） 控制组件更新的阀门  -- 调用setState()函数的时候
+             shouldComponentUpdate(){
+                console.log('生命周期--shouldComponentUpdate')
+                // setState更新的时候调用，如果写了，就执行这里面的代码，必须要有返回boolean值。如果不写，默认返回true
+                // 如果返回的false，则流程停止，不在执行后面的生命周期钩子
+                return true
+            }
+            // 3/c. 组件挂载渲染
+            render(){ // 调用时机，初始化渲染和状态更新之后会调用。
+                console.log('生命周期-render');
+                return (
+                    <div>
+                        <div>学习react_{this.state.count}天</div>
+                        <button onClick={this.add}>冲</button>
+                    </div>
+                )
+            }
+            // d. 新增的生命周期--getSnapshotBeforeUpdate（在更新之前获取快照）就是获取更新前的数据
+            getSnapshotBeforeUpdate(){
+                console.log('getSnapshotBeforeUpdate');
+                return null // 这里的任何返回值，都会传递给componentDidUpdate的第三个参数
+            }
+
+            // 4. （挂载时）组件挂载完毕
+            componentDidMount(){
+                console.log('生命周期-componentDidMount');
+            }
+            // e. (更新完毕时)
+            componentDidUpdate(preProps,preState,snapshot){
+                console.log('生命周期-componentDidUpdate',preProps,preState,snapshot);
+                
+            }
+            // 5/f.（挂载时和父组件render的时候）组件将要卸载
+            componentWillUnmount(){
+                console.log('生命周期-componentWillUnmount');
+            }
+            add = ()=>{
+                let {count} = this.state
+                count++
+                this.setState({count})
+            }
+            
+        }
+        root.render(<LifeCycle />)
+
+    </script>
+</body>
+</html>
