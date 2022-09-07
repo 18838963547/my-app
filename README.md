@@ -1,20 +1,19 @@
 ## React 
 
-### 特点
+### 一 特点
 1. 采用 **组件化模式**、**声明式编码**，提高开发效率及组件复用率
 2. 在React Native中可以使用React语法进行**移动端开发**
 3. 使用**虚拟DOM+优秀的Diffing算法**，尽量减少与真实DOM的交互。
 
-### 知识点 API
+### 二 知识点 API
 1. React.createElement  创建虚拟dom. 当直接写的是jsx语法的时候，直接使用ReactDOM.createRoot(id).render(vdom)
 2. 虚拟DOM本质就是一个object类型的对象（JS中万物皆对象）。虚拟dom相对于真实的dom，对象上的属性少了很多属性，无需真实dom上那么多需要的属性
-```
-xml早期用于存储数和传输数据〈student〉19岁〈/student〉
-后面慢慢的改为用json传输了，方便快捷
 
-```
+    >xml早期用于存储数和传输数据〈student〉19岁〈/student〉
+    >后面慢慢的改为用json传输了，方便快捷
 
-### 知识点，jsx语法
+
+### 三 知识点，jsx语法
 1. 定义VDOM的时候，不要用引号
 2. 标签中混入js表达式时要用{}。
     * 表达式和js的语句不是一个东西
@@ -26,15 +25,16 @@ xml早期用于存储数和传输数据〈student〉19岁〈/student〉
 6. 标签必须闭合
 7. 必须是html中已存在的标签，不可乱写标签。
 
-### 组件的实例对象核心属性之一 ———— state状态
-### 组件的实例对象核心属性之一 ———— props
-### 组件的实例对象核心属性之一 ———— refs
+### 四 组件的实例对象核心属性
+之一 ———— state状态
+之一 ———— props
+之一 ———— refs
 以上三个属性见html文件
 
-### React的doffing算法
+### 五 React的doffing算法
 1. 最小比较节点是标签
 
-#### key的作用
+#### 六 key的作用
 1. （简单表达）key是虚拟dom的标识，在更新显示时，使用key作为对比，有着极其重要的作用
 2. （详细表达）当状态中的数据发生变化的时候，react/vue会生成新的虚拟dom
     1. 如果节点相同，并且key相同，则直接使用之前的dom
@@ -46,14 +46,14 @@ xml早期用于存储数和传输数据〈student〉19岁〈/student〉
     3. 如果不对数据进行逆序的添加或者删除，仅用于渲染列表之类的，是可以使用index的
 
 
-### 数据传递
+### 七 数据传递
 1. 子组件传递给父组件数据
     1. 父中定义一个函数传递给子组件
     2. 子组件通过props调用父组件中的函数。调用函数时把子组件的数据传入，父组件中即可拿到子组件的值
 2. 任意组件传递数据，发布订阅模式
     1. 使用pubsub-js插件库来完成任意组件之间的消息传递
 
-### React ajax
+### 八 React ajax
 1. 引入第三方库axios （使用这个）
     > 实质也是对HttpXMLRequest对象的封装
 2. 自己封装
@@ -63,10 +63,10 @@ xml早期用于存储数和传输数据〈student〉19岁〈/student〉
     2. 风格也是promise风格，可以解决回调地狱的问题
     3. 低版本浏览器可能不太支持，兼容性不太好
 
-### react 设置代理
+### 九 react 设置代理
 1. 直接在src下创建setupProxy.js文件，然后使用中间件**http-proxy-middleware**来做代理
 
-### react路由 (react-router-dom)
+### 十 react路由 (react-router-dom)
 > 路由就是映射关系。地址映射的可以是function或者components
 
 * 操作路由的方式 History上面有两种处理路由的方式
