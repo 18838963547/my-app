@@ -19,16 +19,14 @@ import './App.css';
 // import Welcome from "./components/Welcome";
 // import TodoList from "./components/TodoList/TodoList";
 // import RequestCom from "./components/RequestCom/RequestCom";
-import GitSearch from "./components/GitSearch";
+// import GitSearch from "./components/GitSearch";
 class App extends Component {
   render(){
     return (
       <div className="App">
-        <GitSearch />
+        {/* <GitSearch /> */}
         {/* <RequestCom /> */}
-        {/* <Hello />
-        <Welcome />
-        <TodoList/> */}
+        {/* <Hello /><Welcome /><TodoList/> */}
       </div>
     )
   }
