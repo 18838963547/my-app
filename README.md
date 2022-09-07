@@ -11,4 +11,4 @@
 3. 使用jQuery
 
 #### react 设置代理
-1. 直接在src下创建setupProxy.js文件，然后使用中间件来做代理
+1. 直接在src下创建setupProxy.js文件，然后使用中间件来做代理adf
