@@ -112,3 +112,17 @@
 * 编程式导航 
     * this.props.history.push(path) //一般组件的props没有history
     * 一般组件使用history。要引入withRouter。 withRouter(一般组件) 返回值是一个新的组件————就是给一般组件加上history
+
+
+### redux  一个管理状态库的插件
+1. 可以应用于很多框架
+
+### react-redux
+1. 所有的UI组件都应该包裹一个容器组件，UI组件作为子组件
+2. 容器组件时真正的和redux打交道的，里面可以随意的使用redux的api
+3. Ui组件中不能使用任何redux的api
+4. 容器组件会传给UI组件： 1. redux中保存的状态。2.用于操作状态的方法
+5. 备注：容器给UI传递：状态、操作的方法，均通过props传递
+
+#### 基本使用方式
+1. 容器是用connect来链接容器和UI组件   connect(mapStateToProps,mapDispatchToProps)(UIComponent)
