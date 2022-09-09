@@ -1,4 +1,4 @@
-import { legacy_createStore as createStore,applyMiddleware, combineReducers } from "redux";
+import { legacy_createStore as createStore,applyMiddleware } from "redux";
 // import countReducer from './reducers/count_reducers'
 // import  personReducers  from "./reducers/person";
 import allReducers from './reducers/index'

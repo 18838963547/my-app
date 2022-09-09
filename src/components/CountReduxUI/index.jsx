@@ -18,7 +18,7 @@ export default class CountRedux extends Component {
     // store.dispatch(createIncrementAsyncAction(1,1000))
   }
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     const {state} = this.props
     return (
       <div>

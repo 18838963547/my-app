@@ -26,8 +26,9 @@ import './App.css';
 // import GitSearch from "./components/GitSearch";
 // import RouterCom from "./components/RouterCom";
 // import CountRedux from "./components/CountRedux";
-import CountContainer from "./container/countContain";
-import Person from "./container/Person";
+// import CountContainer from "./container/countContain";
+// import Person from "./container/Person";
+import RouterSix from "./components/RouterSix";
 
 class App extends Component {
   render(){
@@ -42,9 +43,11 @@ class App extends Component {
         {/* 给容器组件传递store */}
         {/* <CountContainer store={store}></CountContainer> */}
         {/* 这里可以全局给每个组件传入store,在index.js中使用Provider标签，给全局注入 */}
-        <CountContainer></CountContainer>
+        {/* <CountContainer></CountContainer>
         --------------------------------------------------------------------------
-        <Person></Person>
+        <Person></Person> */}
+
+        <RouterSix></RouterSix>
       </div>
     )
   }
