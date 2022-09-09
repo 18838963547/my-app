@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import store from '../../redux/store';
-import { createIncrementAction,createIncrementAsyncAction } from '../../redux/count_actions';
+import { createIncrementAction,createIncrementAsyncAction } from '../../redux/actions/count_actions';
 
 export default class CountRedux extends Component {
 //   componentDidMount(){

@@ -1,6 +1,6 @@
 // 该文件专门为count组件生成action对象
 
-import { OPERCTION } from "./const"
+import { OPERCTION } from "../const"
 // import store from "./store"
 const {INCREMENT,DECREMENT} = OPERCTION
 

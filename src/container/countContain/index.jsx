@@ -4,7 +4,7 @@
 
 // 引入ui组件
 import CountReduxUI from "../../components/CountReduxUI";
-import { createIncrementAction } from "../../redux/count_actions";
+import { createIncrementAction } from "../../redux/actions/count_actions";
 
 // 引入store ---这里不能直接引入，要用props传递
 // import store from "../../redux/store";
@@ -12,7 +12,7 @@ import { createIncrementAction } from "../../redux/count_actions";
 // 引入connect，用于链接UI组件与redux
 import { connect } from "react-redux";
 
-const mapStateToProps = (state)=> ({a:state})
+const mapStateToProps = (state)=> ({state:state})
 
 // const mapDispatchToProps = (dispatch)=>{
 //     return {

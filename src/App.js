@@ -16,7 +16,7 @@
 import React,{Component} from "react";
 // import { Button } from "antd";
 // import 'antd/dist/antd.css'
-import store from "./redux/store";
+// import store from "./redux/store";
 
 import './App.css';
 // import Hello from "./components/Hello";
@@ -27,6 +27,7 @@ import './App.css';
 // import RouterCom from "./components/RouterCom";
 // import CountRedux from "./components/CountRedux";
 import CountContainer from "./container/countContain";
+import Person from "./container/Person";
 
 class App extends Component {
   render(){
@@ -42,7 +43,8 @@ class App extends Component {
         {/* <CountContainer store={store}></CountContainer> */}
         {/* 这里可以全局给每个组件传入store,在index.js中使用Provider标签，给全局注入 */}
         <CountContainer></CountContainer>
-
+        --------------------------------------------------------------------------
+        <Person></Person>
       </div>
     )
   }

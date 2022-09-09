@@ -19,12 +19,12 @@ export default class CountRedux extends Component {
   }
   render() {
     console.log(this.props)
-    const {a} = this.props
+    const {state} = this.props
     return (
       <div>
         <p>CountRedux</p>
         {/* <strong>{store.getState()}</strong> */}
-        <strong>{a}</strong>
+        <strong>{state.count}</strong>
         <button onClick={this.increment}>+</button>
         <button onClick={this.incrementAsync}>async+</button>
       </div>
