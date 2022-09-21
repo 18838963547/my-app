@@ -31,7 +31,7 @@
 * 之一 ———— refs
 * 以上三个属性见html文件
 
-### 五 React的doffing算法
+### 五 React的diffing算法
 1. 最小比较节点是标签
 
 #### 六 key的作用
